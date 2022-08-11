@@ -1,0 +1,22 @@
+<div [ngClass]="{'snapped' : txtSnap=='Oh Snap !'}" class="face-snap-card">
+    <h2>{{ faceSnap.title | uppercase }}</h2>
+    <p>Mis en ligne le {{ faceSnap.createdDate | date: 'dd MMMM yy, à HH:mm' }}</p>
+    <p>{{ faceSnap.description | titlecase }}</p>
+    <p>
+        <button  *ngIf="faceSnap.snaps >-11"(click)="onAddSnap()">{{txtSnap}}</button>
+       <span  [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }"> 🤌{{ faceSnap.snaps }}</span></p>
+       
+       <!-- 'chiffresMinAvantVirgule.chiffresMinAprèsVirgule-chiffresMaxAprèsVirgule' -->
+       <p>{{ 4346234.78 | number: '1.0-1'  }}</p>
+       <p>{{ 0.336 | percent: '1.0-1' }}</p>
+       <p>{{ 344.36 | currency: 'US' }}</p>
+    <!--Si url est string
+    <img src="{{ imageURL }}" alt="{{ title }}">
+    -->
+    <!-- Sinon utilise le typescript avec binding []-->
+    <img [src]="faceSnap.imageURL" [alt]="faceSnap.title">
+
+    <!-- Choix affiché ou non selon sa valeur-->
+    <p *ngIf="faceSnap.location == 'Paris'">Photo prise à <strong>{{ faceSnap.location }}</strong></p>
+    <br>
+</div>
